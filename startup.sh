@@ -1,17 +1,24 @@
-cd ~
+#!/bin/sh
+set -e
 
-touch .ssh/id_rsa
-cmhod 600 .ssh/id_rsa
-echo $GIT_PRIVATE_KEY > .ssh/id_rsa
-
-touch .ssh/id_rsa.pub
-cmhod 600 .ssh/id_rsa.pub
-echo $GIT_REPO_PUBLIC_KEY > .ssh/id_rsa.pub
+if [ -n "$SSH_PRIVATE_KEY" ]; then
+  mkdir -p ~/.ssh
+  echo "-----BEGIN RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
+  echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  echo "-----END RSA PRIVATE KEY-----" >> ~/.ssh/id_rsa
+  chmod 0400 ~/.ssh/id_rsa
+fi
+if [ -n "$SSH_KNOWN_HOSTS" ]; then
+  mkdir -p ~/.ssh
+  echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+  chmod 0644 ~/.ssh/known_hosts
+fi
 
 if [ ! -f $GIT_IDEMPOTENCE_FLAG ]; then
+  cd ~
   rm -rf .git # blow away any previous partially-failed checkout
   git init
-  git remote add origin $GIT_ORIGIN
+  git remote add origin $GIT_REPO
   git fetch
   # checkout and track branch, overwriting any existing differences
   git checkout --force $GIT_BRANCH --
