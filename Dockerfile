@@ -1,10 +1,15 @@
-FROM jenkins
+FROM jenkins:alpine
+
+USER root
 
 ENV GIT_IDEMPOTENCE_FLAG .git/chef.flag
 ENV GIT_BRANCH master
 
-COPY startup.sh /usr/local/bin/startup.sh
+RUN apk add --no-cache su-exec 
+
+COPY run-root.sh /usr/local/bin/run-root.sh
+COPY run-jenkins.sh /usr/local/bin/run-jenkins.sh
 
 ENTRYPOINT ["/bin/tini", "--"]
 
-CMD ["/usr/local/bin/startup.sh"]
+CMD ["/usr/local/bin/run-root.sh"]
