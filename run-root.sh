@@ -3,7 +3,7 @@ set -e
 
 KEYSTORE="/etc/ssl/certs/java/cacerts"
 LDAPCERT="dc0-stl.schafer.lan.64.cer"
-STOREPASSWORD="changit"
+STOREPASSWORD="changeit"
 
 if ! keytool -list -keystore $KEYSTORE -storepass $STOREPASSWORD -alias $LDAPCERT ; then
   mkdir ~/s3files
