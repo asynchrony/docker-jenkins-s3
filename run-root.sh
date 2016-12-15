@@ -12,5 +12,5 @@ if ! keytool -list -keystore $KEYSTORE -storepass $STOREPASSWORD -alias $LDAPCER
   keytool -import -trustcacerts -alias $LDAPCERT -file ~/s3files/$LDAPCERT -keystore $KEYSTORE -storepass $STOREPASSWORD -noprompt
 fi
 
-chown -R jenkins /var/jenkins_home
+chown jenkins /var/jenkins_home
 su-exec jenkins /usr/local/bin/run-jenkins.sh
