@@ -5,7 +5,7 @@ if [ -n "$SSH_PRIVATE_KEY" ]; then
   mkdir -p ~/.ssh
   rm -f ~/.ssh/id_rsa
   echo "-----BEGIN RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
-  echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  echo "$SSH_PRIVATE_KEY" | fold -w 64 >> ~/.ssh/id_rsa
   echo "-----END RSA PRIVATE KEY-----" >> ~/.ssh/id_rsa
   chmod 0400 ~/.ssh/id_rsa
 fi
