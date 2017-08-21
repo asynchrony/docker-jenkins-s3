@@ -23,6 +23,8 @@ if [ -n "$S3_BUCKET" ]; then
   echo "*/5 * * * * /usr/local/bin/s3-sync.sh > /var/log/s3-sync.log" | /usr/bin/crontab -
   echo "Doing initial sync with S3"
   /usr/local/bin/s3-sync.sh
+  echo "Starting Crond service..."
+  /usr/sbin/crond
 fi
 
 chown jenkins /var/jenkins_home
