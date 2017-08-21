@@ -20,9 +20,9 @@ if [ -n "$S3_BUCKET" ]; then
   echo "Setting up S3-Sync"
   chmod +x /usr/local/bin/s3-sync.sh
   touch /var/log/s3-sync.log
-  echo "*/5 * * * * /usr/local/bin/s3-sync.sh > /var/log/s3-sync.log" | /usr/bin/crontab -
   echo "Doing initial sync with S3"
   /usr/local/bin/s3-sync.sh
+  echo "*/5 * * * * /usr/local/bin/s3-sync.sh > /var/log/s3-sync.log" | /usr/bin/crontab -
   echo "Starting Crond service..."
   /usr/sbin/crond
 fi
