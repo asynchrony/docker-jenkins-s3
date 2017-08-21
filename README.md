@@ -1,10 +1,8 @@
 # docker-jenkins-master
 
-
-
 Jenkins master docker container. Specify SSH public/private keys when launching to enable access to repository server. Not specifying keys will mean you will have to manually enter these in to Jenkins.
 
-If S3_BUCKET is specified (without s3://), a cron job will also be created to sync your jenkins home folder to and S3 bucket every 5 minutes.
+If S3_BUCKET is specified (without s3://), a cron job will also be created to sync your jenkins home folder to and S3 bucket every 5 minutes. The docker host must have access to the S3 bucket in order for this process to work.
 
 ## Use
 
