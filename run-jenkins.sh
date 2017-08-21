@@ -16,5 +16,10 @@ if [ -n "$SSH_KNOWN_HOSTS" ]; then
   chmod 0644 ~/.ssh/known_hosts
 fi
 
+if [ -n "$S3_BUCKET" ]; then
+  echo "Setting up S3-Sync"
+  /usr/bin/crontab "*/5 * * * * /usr/local/bin/s3-sync.sh >> /var/log/s3-sync.log"
+fi
+
 chown jenkins /var/jenkins_home
 exec /usr/local/bin/jenkins.sh
