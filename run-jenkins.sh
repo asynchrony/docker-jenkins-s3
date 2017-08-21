@@ -18,6 +18,7 @@ fi
 
 if [ -n "$S3_BUCKET" ]; then
   echo "Setting up S3-Sync"
+  chmod +x /usr/local/bin/s3-sync.sh
   /usr/bin/crontab /usr/local/bin/s3-sync-cron.txt
 fi
 
