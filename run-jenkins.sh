@@ -16,15 +16,5 @@ if [ -n "$SSH_KNOWN_HOSTS" ]; then
   chmod 0644 ~/.ssh/known_hosts
 fi
 
-cd ~
-if [ ! -f $GIT_IDEMPOTENCE_FLAG ]; then
-  rm -rf .git # blow away any previous partially-failed checkout
-  git init
-  git remote add origin $GIT_REPO
-  git fetch
-  # checkout and track branch, overwriting any existing differences
-  git checkout --force $GIT_BRANCH --
-  touch $GIT_IDEMPOTENCE_FLAG # indicate success
-fi
-
+chown jenkins /var/jenkins_home
 exec /usr/local/bin/jenkins.sh
