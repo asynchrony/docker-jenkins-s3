@@ -21,6 +21,8 @@ if [ -n "$S3_BUCKET" ]; then
   chmod +x /usr/local/bin/s3-sync.sh
   touch /var/log/s3-sync.log
   /usr/bin/crontab /usr/local/bin/s3-sync-cron.txt
+  echo "Doing initial sync with S3"
+  ./s3-sync.sh
 fi
 
 chown jenkins /var/jenkins_home
