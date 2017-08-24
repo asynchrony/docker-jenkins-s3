@@ -10,6 +10,7 @@ RUN addgroup -g 233 docker \
       shadow \
  && pip install --no-cache-dir \
       awscli \
+      docker-compose \
  && usermod -a -G docker jenkins \
  && docker --version \
  && git --version \
