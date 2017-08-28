@@ -1,4 +1,5 @@
-# docker-jenkins-master
+# docker-jenkins-s3
+### forked from docker-jenkins-master
 
 Jenkins master docker container. Specify SSH public/private keys when launching to enable access to repository server. If you do not start the container with these keys set, you will have to manually enter these in to Jenkins in order to access your repository.
 
