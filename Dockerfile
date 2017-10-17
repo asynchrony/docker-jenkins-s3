@@ -2,6 +2,9 @@ FROM jenkins/jenkins:lts-alpine
 
 USER root
 
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories \
+ && echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
+
 RUN addgroup -g 233 docker \
  && apk add --no-cache \
       docker \
