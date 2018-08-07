@@ -13,7 +13,7 @@ docker run \
   asynchrony/docker-jenkins-s3
 ```
 
-If `S3_BUCKET` is specified (without s3://), a cron job will also be created to sync your jenkins home folder to an S3 bucket every 5 minutes. Subsequent starts of the container will pull down the contents of the S3 bucket before starting Jenkins, thereby restoring all your jobs and settings. 
+If `S3_BUCKET` is specified (without s3://), a cron job will also be created to sync your jenkins home folder to an S3 bucket every 60 minutes. Subsequent starts of the container will pull down the contents of the S3 bucket before starting Jenkins, thereby restoring all your jobs and settings. 
 
 If `SSH_PRIVATE_KEY` is specified, the id_rsa file will be created in the ~/.ssh directory. This will allow Jenkins to connect to a repo without specifying credentials inside of Jenkins. The value should be the key, minus new lines and the header and footer. *Note, that certain Docker OSes (CoreOS) have a character limit for unit files that will cause the container to fail if the command is too long. So you may not be able to utilize this feature depending on how long your generated keys are.*
 
