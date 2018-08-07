@@ -22,7 +22,7 @@ if [ -n "$S3_BUCKET" ]; then
   touch /var/log/s3-sync.log
 
   echo "Doing initial sync with S3"
-  /usr/bin/aws s3 sync s3://$S3_BUCKET /var/jenkins_home --exclude "*workspace/*" --exclude "*workspace/*" --exclude "*lastSuccessfulBuild/*" --exclude "*lastStableBuild/*" --exclude "*lastFailedBuild/*" --exclude "*lastUnsuccessfulBuild/*"
+  /usr/bin/aws s3 sync s3://$S3_BUCKET /var/jenkins_home --exclude "*caches/*" --exclude "*workspace/*" --exclude "*workspace/*" --exclude "*lastSuccessfulBuild/*" --exclude "*lastStableBuild/*" --exclude "*lastFailedBuild/*" --exclude "*lastUnsuccessfulBuild/*"
 
   echo "*/60 * * * * /usr/local/bin/s3-sync.sh > /var/log/s3-sync.log" | /usr/bin/crontab -
   echo "Ensure Crond is running in background"
